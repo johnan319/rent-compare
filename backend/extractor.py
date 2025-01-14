@@ -3,8 +3,10 @@ from bs4 import BeautifulSoup
 import re
 import json
 
-def get_rental_listing_from_domain():
-    url = 'https://www.domain.com.au/building-profile/33-rose-lane-melbourne-vic-3000?filtertype=forRent&pagesize=100&pageno=1'
+def get_rental_listing_from_domain(address: str):
+    # URL encode the address for the query parameter
+    encoded_address = requests.utils.quote(address)
+    url = f'https://www.domain.com.au/building-profile/{encoded_address}?filtertype=forRent&pagesize=100&pageno=1'
     headers = {'User-Agent': 'Mozilla/5.0'}
 
     response = requests.get(url, headers=headers)

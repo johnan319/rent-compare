@@ -1,0 +1,52 @@
+<div class="container">
+  <header style="padding: 24px 0;">
+    <h1 style="font-size: 48px; font-weight: 600; margin-bottom: 24px;">
+      Find Your Perfect Home
+    </h1>
+    
+    <app-search
+      (searchResults)="onSearchResults($event)"
+    ></app-search>
+
+    <div class="filters">
+      <select [(ngModel)]="filters.beds" (change)="applyFilters()" class="filter-select">
+        <option value="">Beds (Any)</option>
+        <option value="1">1 Bed</option>
+        <option value="2">2 Beds</option>
+        <option value="3">3 Beds</option>
+      </select>
+
+      <select [(ngModel)]="filters.baths" (change)="applyFilters()" class="filter-select">
+        <option value="">Baths (Any)</option>
+        <option value="1">1 Bath</option>
+        <option value="2">2 Baths</option>
+        <option value="3">3 Baths</option>
+      </select>
+
+      <select [(ngModel)]="filters.parking" (change)="applyFilters()" class="filter-select">
+        <option value="">Parking (Any)</option>
+        <option value="1">1 Space</option>
+        <option value="2">2 Spaces</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="property-grid">
+    <div *ngFor="let property of filteredProperties" class="property-card">
+      <h2 class="property-price">{{ property.price }}/week</h2>
+      <p style="font-size: 18px; margin-bottom: 8px;">{{ property.address }}</p>
+      
+      <div class="property-details">
+        <span class="property-feature">
+          <span>🛏️ {{ property.beds }}</span>
+        </span>
+        <span class="property-feature">
+          <span>🚿 {{ property.baths }}</span>
+        </span>
+        <span class="property-feature">
+          <span>🚗 {{ property.parking }}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div> 
